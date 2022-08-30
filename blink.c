@@ -57,7 +57,6 @@ void setup(void);
 void sclock(void);
 void rclock(void);
 void DataDisplay(unsigned int data, unsigned int data2);
-void CheckResponse();
 
 void main(void)
 {
@@ -67,16 +66,26 @@ void main(void)
     unsigned int time1 = 100;
  
     while(1){
-		ANSEL &= ~0x0F;
-CMCON = 0x07;
-		CheckResponse(); //get response from DHT11 sensor
-        
-        if(Check == 1)  // Did DHT11 respond ? 
-        	DataDisplay(sym_t, sym_H);  // Display b to LED seven segment (i.e. begin loop )
-        //delay(1000); 
-		//unsigned int RandomNumber = random();
-		//DataDisplay(data[RandomNumber]);
-       
+        unsigned int contador = 0;
+        while (contador <= 3){
+            if(BOTON == 1)  {
+                DataDisplay(sym_t, sym_H);
+                contador= contador + 1;  // Display b to LED seven segment (i.e. begin loop )
+            }
+            BOTON = 0;
+
+        }
+
+        DataDisplay(data[9], data[9]);
+        DataDisplay(0x00, 0x00);
+        delay(10);
+        DataDisplay(data[9], data[9]);
+        DataDisplay(0x00, 0x00);
+        delay(10);
+        DataDisplay(data[9], data[9]);
+        DataDisplay(0x00, 0x00);
+        delay(10);
+        GPIO=0x00; 
    
     return;
     }
@@ -94,12 +103,12 @@ void delay(unsigned int tiempo)
 
 void setup (void)
 {
-    ADCON0 = 0x00;        // Turn off the A/D Converter ADFM and ADON
-    ANSEL = 0x00;      
-    CMCON = 0x07;		 // Shut off the Comparator
-    VRCON = 0x00;        // Shut off the Voltage Reference
-    TRISIO = 0b001000;       // GP4 and GP3 input, rest all output 011000
+    //ADCON0 = 0x00;        // Turn off the A/D Converter ADFM and ADON 
+    //CMCON = 0x07;		 // Shut off the Comparator
+    //VRCON = 0x00;        // Shut off the Voltage Reference
+    TRISIO = 0b00001000;       // GP4 and GP3 input, rest all output 011000
     GPIO=0x00;           // set all pins low
+    ANSEL = 0; // Pines digital   
 }
 
 
@@ -126,14 +135,5 @@ void DataDisplay(unsigned int data1,  unsigned int data2){
     rclock(); // Data latch
 }
 
-/* Check Response function: 
-  Check if DHT responded to Start signal 
-  40uS low pulse 80uS high pulse*/
- void CheckResponse(){
- Check = 0;
- delay(5);
- if (BOTON ==0)
-	Check = 1; 
-delay(5);
- }
+
 

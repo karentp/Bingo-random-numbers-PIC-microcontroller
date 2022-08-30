@@ -6,7 +6,7 @@
 
 <item itemtype="Switch" CircId="Switch-47" mainComp="false" Show_id="false" Show_Val="false" Pos="-208,4" rotation="0" hflip="1" vflip="1" label="Switch-47" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" DT="false" Poles="1 _Poles" />
 
-<item itemtype="MCU" CircId="p12F675-121" mainComp="false" Show_id="true" Show_Val="false" Pos="-464,-8" rotation="0" hflip="1" vflip="1" label="p12F675-121" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="../holaPIC/blink.hex" Auto_Load="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" />
+<item itemtype="MCU" CircId="p12F675-121" mainComp="false" Show_id="true" Show_Val="false" Pos="-464,-8" rotation="0" hflip="1" vflip="1" label="p12F675-121" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="blink.hex" Auto_Load="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" />
 
 <item itemtype="Subcircuit" CircId="74HC595-178" mainComp="false" Show_id="true" Show_Val="false" Pos="-356,-40" rotation="0" hflip="1" vflip="1" label="74HC595-178" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="true" />
 
@@ -26,9 +26,17 @@
 
 <item itemtype="Push" CircId="Push-314" mainComp="false" Show_id="false" Show_Val="false" Pos="-568,4" rotation="0" hflip="1" vflip="1" label="Push-314" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1 _Poles" />
 
-<item itemtype="Rail" CircId="Rail-319" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="-628,4" rotation="0" hflip="1" vflip="1" label="Rail-319" idLabPos="-16,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Voltage="5 V" />
+<item itemtype="Capacitor" CircId="Capacitor-359" mainComp="false" ShowProp="Capacitance" Show_id="false" Show_Val="true" Pos="-540,-48" rotation="90" hflip="1" vflip="1" label="Capacitor-359" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Capacitance="1 µF" />
 
-<item itemtype="Probe" CircId="Probe-321" mainComp="false" Show_id="false" Show_Val="true" Pos="-524,24" rotation="-45" hflip="1" vflip="1" label="Probe-321" idLabPos="16,-16" labelrot="45" valLabPos="16,0" valLabRot="45" ShowVolt="true" Threshold="2.5 V" />
+<item itemtype="Resistor" CircId="Resistor-360" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-540,52" rotation="90" hflip="1" vflip="1" label="Resistor-360" idLabPos="-16,-24" labelrot="0" valLabPos="-11.9292,-17.6104" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Ground" CircId="Ground-367" mainComp="false" Show_id="false" Show_Val="false" Pos="-540,112" rotation="0" hflip="1" vflip="1" label="Ground-367" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-369" mainComp="false" Show_id="false" Show_Val="false" Pos="-512,-84" rotation="0" hflip="1" vflip="1" label="Ground-369" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-374" mainComp="false" Show_id="false" Show_Val="false" Pos="-624,4" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-374" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="false" Voltage="5 V" />
+
+<item itemtype="Probe" CircId="Probe-376" mainComp="false" Show_id="false" Show_Val="true" Pos="-596,76" rotation="-45" hflip="1" vflip="1" label="Probe-376" idLabPos="16,-16" labelrot="45" valLabPos="16,0" valLabRot="45" ShowVolt="true" Threshold="2.5 V" />
 
 <item itemtype="Node" CircId="Node-236" mainComp="false" Pos="-376,-32" />
 
@@ -36,7 +44,11 @@
 
 <item itemtype="Node" CircId="Node-242" mainComp="false" Pos="-380,24" />
 
-<item itemtype="Node" CircId="Node-323" mainComp="false" Pos="-536,4" />
+<item itemtype="Node" CircId="Node-362" mainComp="false" Pos="-536,4" />
+
+<item itemtype="Node" CircId="Node-365" mainComp="false" Pos="-544,4" />
+
+<item itemtype="Node" CircId="Node-378" mainComp="false" Pos="-516,0" />
 
 <item itemtype="Connector" uid="connector-324" startpinid="Ground-34-Gnd" endpinid="Switch-47-pinP0" pointList="-240,32,-240,4,-224,4" />
 
@@ -100,12 +112,24 @@
 
 <item itemtype="Connector" uid="connector-354" startpinid="74HC595-221-DS" endpinid="p12F675-121-PORTP4" pointList="-356,-168,-484,-168,-484,16,-472,16" />
 
-<item itemtype="Connector" uid="connector-355" startpinid="p12F675-121-PORTP3" endpinid="Node-323-0" pointList="-472,24,-500,24,-500,0,-524,0,-524,4,-536,4" />
+<item itemtype="Connector" uid="connector-355" startpinid="p12F675-121-PORTP3" endpinid="Node-378-0" pointList="-472,24,-500,24,-500,0,-516,0" />
 
-<item itemtype="Connector" uid="connector-356" startpinid="Rail-319-outnod" endpinid="Push-314-pinP0" pointList="-612,4,-584,4" />
+<item itemtype="Connector" uid="Connector-361" startpinid="Capacitor-359-rPin" endpinid="Node-362-1" pointList="-540,-32,-540,4,-536,4" />
 
-<item itemtype="Connector" uid="connector-357" startpinid="Probe-321-inpin" endpinid="Node-323-1" pointList="-540,40,-540,4,-536,4" />
+<item itemtype="Connector" uid="Connector-363" startpinid="Node-362-2" endpinid="Node-365-0" pointList="-536,4,-544,4" />
 
-<item itemtype="Connector" uid="connector-358" startpinid="Node-323-2" endpinid="Push-314-switch0pinN" pointList="-536,4,-552,4" />
+<item itemtype="Connector" uid="Connector-364" startpinid="Resistor-360-lPin" endpinid="Node-365-1" pointList="-540,36,-540,4,-544,4" />
+
+<item itemtype="Connector" uid="Connector-366" startpinid="Node-365-2" endpinid="Push-314-switch0pinN" pointList="-544,4,-552,4" />
+
+<item itemtype="Connector" uid="Connector-368" startpinid="Resistor-360-rPin" endpinid="Ground-367-Gnd" pointList="-540,68,-540,96" />
+
+<item itemtype="Connector" uid="Connector-370" startpinid="Capacitor-359-lPin" endpinid="Ground-369-Gnd" pointList="-540,-64,-540,-116,-512,-116,-512,-100" />
+
+<item itemtype="Connector" uid="Connector-375" startpinid="Fixed Voltage-374-outnod" endpinid="Push-314-pinP0" pointList="-608,4,-584,4" />
+
+<item itemtype="Connector" uid="Connector-377" startpinid="Probe-376-inpin" endpinid="Node-378-1" pointList="-612,92,-516,92,-516,0" />
+
+<item itemtype="Connector" uid="Connector-379" startpinid="Node-378-2" endpinid="Node-362-0" pointList="-516,0,-524,0,-524,4,-536,4" />
 
 </circuit>
