@@ -1,18 +1,11 @@
 #include <pic14/pic12f675.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>  /* for time() */
 
 //To compile:
 // run make and use .hex as firmware in the circuit
 
 /* Defining configuration*/
 
-#pragma config FOSC = INTRCIO   // Oscillator Selection bits (INTOSC oscillator: I/O function on GP4/OSC2/CLKOUT pin, I/O function on GP5/OSC1/CLKIN)
-#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
-#pragma config PWRTE = OFF      // Power-Up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // MCLR
-#pragma config BOREN = OFF      // Brown-out Detect Enable bit (BOD disabled)
 #pragma config CP = OFF         // Code Protection bit (Program Memory code protection is disabled)
 #pragma config CPD = OFF // Data Code Protection bit (Data memory code protection is disabled)
 
@@ -26,13 +19,6 @@
 #define DATA_GP4 GP4 // data for led 2
 #define BOTON GP3 // data input for the button
 
-//Prove symbols for the 7 segment
-#define sym_b 0x3F     // b fgedc 1111100 
-#define sym_t 0x06     // t fged 1111000 
-#define sym_H  0x5B    // H fegbc 1110110
-#define sym_E  0x79     // E bc(off) 1111001 
-#define sym_C  0x39     // C 
-#define sym_DASH  0x5B    // -
 
 // Symbols for numbers 0-9 in the 7 segment LED
 char data[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x67}; 
@@ -44,7 +30,7 @@ void setup_mic(void);
 void main_clock(void);
 void latch_clock(void);
 void DisplayData(unsigned int data, unsigned int data2);
-unsigned int random();
+void blink();
 
 /*MAIN*/
 
@@ -52,34 +38,33 @@ void main(void)
 {
 
     setup_mic();
- 
-    unsigned int time1 = 100;
- 
+
+    unsigned int random_1 = 0;
+    unsigned int random_2 = 5;
+    unsigned int contador = 0;
     while(1){
-        unsigned int contador = 0;
-        while (contador <= 3){
+        while (contador < 5){
+            if (random_1<9) {random_1 = random_1 + 1;}
+            else random_1 = 0;
+            if (random_2<9) {random_2 = random_2 + 1;}
+            else random_2 = 0;
             if(BOTON == 1)  {
-                //int data1 = random();
-                //int data2 = random();
-                //DisplayData(data1, data2);
-                contador= contador + 1;  // Display b to LED seven segment (i.e. begin loop )
+                DisplayData(random_1, random_2);
+                contador= contador + 1;  
             }
             BOTON = 0;
-
         }
-
-        DisplayData(data[9], data[9]);
-        DisplayData(0x00, 0x00);
-        delay(10);
-        DisplayData(data[9], data[9]);
-        DisplayData(0x00, 0x00);
-        delay(10);
-        DisplayData(data[9], data[9]);
-        DisplayData(0x00, 0x00);
-        delay(10);
-        GPIO=0x00; 
-   
-    return;
+        delay(50);
+        GPIO=0x00;
+        DisplayData(0xD,0xD);
+        DisplayData(9,9);
+        DisplayData(0xD,0xD);
+        DisplayData(9,9);
+        DisplayData(0xD,0xD);
+        DisplayData(9,9);
+        DisplayData(0xD,0xD);
+         
+        contador=0;
     }
  
 }
@@ -95,9 +80,6 @@ void delay(unsigned int tiempo)
 
 void setup_mic (void)
 {
-    //ADCON0 = 0x00;        // Turn off the A/D Converter ADFM and ADON 
-    //CMCON = 0x07;		 // Shut off the Comparator
-    //VRCON = 0x00;        // Shut off the Voltage Reference
     TRISIO = 0b00001000;       // GP3 input, rest all output
     GPIO=0x00;           // set all pins low
     ANSEL = 0; // Pins to digital  
@@ -118,14 +100,15 @@ void latch_clock(void){
     }
 
 void DisplayData(unsigned int data1,  unsigned int data2){
+    if (data1 == 0xD) {data1= 0x00; data2=0x00;}
+    else{
+        data1 = data[data1];
+        data2 = data[data2];
+    }
     for (int i=0 ; i<8 ; i++){
 		DATA_GP0 = (data1 >> i) & 0x01; // bit shift and bit mask data.
 		DATA_GP4 = (data2 >> i) & 0x01; // bit shift and bit mask data.
-		
         main_clock(); //enable data storage clock
     }
     latch_clock(); // Data latch
 }
-
-
-

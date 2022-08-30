@@ -4,8 +4,9 @@ CC=sdcc
 LD=sdcc
 CFLAGS=-I. -I/usr/local/share/sdcc/non-free/include
 TARGET=blink
+LDFLAGS = -I/usr/local/lib
 
-SRCS = blink.c
+SRCS = blink.c 
 
 all:
 	${CC} --use-non-free ${FAMILY} ${MCU} ${CFLAGS} -o ${TARGET} ${SRCS}
