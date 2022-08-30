@@ -1,16 +1,14 @@
 #include <pic14/pic12f675.h>
 
 //To compile:
-// run make and use .hex as firmware in the circuit
+// run make and use .hex as firmware in the circuit in Simulid
 
 /* Defining configuration*/
 
-#pragma config MCLRE = OFF      // MCLR
-#pragma config CP = OFF         // Code Protection bit (Program Memory code protection is disabled)
-#pragma config CPD = OFF // Data Code Protection bit (Data memory code protection is disabled)
+#pragma config MCLRE = OFF      // MCLR GP03
 
- /*Define clock freq*/
-#define FREQ 4000000  // 4MHZ 
+/*Define clock freq*/
+//#define FREQ 4000000  // 4MHZ 
 
 /*Define the GPOs name*/
 #define DATA_GP0 GP0 // data for led 1
@@ -40,7 +38,7 @@ void main(void)
     setup_mic();
 
     unsigned int random_1 = 0;
-    unsigned int random_2 = 5;
+    unsigned int random_2 = 7;
     unsigned int contador = 0;
     while(1){
         while (contador < 5){

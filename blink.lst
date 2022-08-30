@@ -1,6 +1,6 @@
 gplink-1.4.0 #1107 (Apr  3 2018)
 Copyright (c) 1998-2014 gputils project
-Listing File Generated: 8-30-2022  01:18:18
+Listing File Generated: 8-30-2022  01:33:30
  
  
 Address  Value    Disassembly              Source
@@ -188,23 +188,23 @@ Address  Value    Disassembly              Source
                                            S_blink__main	code
                                            _main:
                                            ; 2 exit points
-                                           ;	.line	40; "blink.c"	setup_mic();
+                                           ;	.line	38; "blink.c"	setup_mic();
                                            	PAGESEL	_setup_mic
 00012a   2237     call    0x0237           	CALL	_setup_mic
                                            	PAGESEL	$
-                                           ;	.line	42; "blink.c"	unsigned int random_1 = 0;
+                                           ;	.line	40; "blink.c"	unsigned int random_1 = 0;
 00012b   01b0     clrf    0x30             	CLRF	r0x101B
 00012c   01b1     clrf    0x31             	CLRF	r0x101C
-                                           ;	.line	43; "blink.c"	unsigned int random_2 = 5;
-00012d   3005     movlw   0x05             	MOVLW	0x05
+                                           ;	.line	41; "blink.c"	unsigned int random_2 = 7;
+00012d   3007     movlw   0x07             	MOVLW	0x07
 00012e   00b2     movwf   0x32             	MOVWF	r0x101D
 00012f   01b3     clrf    0x33             	CLRF	r0x101E
-                                           ;	.line	44; "blink.c"	unsigned int contador = 0;
+                                           ;	.line	42; "blink.c"	unsigned int contador = 0;
 000130   01b4     clrf    0x34             	CLRF	r0x101F
 000131   01b5     clrf    0x35             	CLRF	r0x1020
                                            ;;unsigned compare: left < lit(0x5=5), size=2
                                            _00113_DS_:
-                                           ;	.line	46; "blink.c"	while (contador < 5){
+                                           ;	.line	44; "blink.c"	while (contador < 5){
 000132   3000     movlw   0x00             	MOVLW	0x00
 000133   0235     subwf   0x35, 0x0        	SUBWF	r0x1020,W
 000134   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
@@ -214,9 +214,9 @@ Address  Value    Disassembly              Source
                                            _00141_DS_:
 000138   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 000139   296c     goto    0x016c           	GOTO	_00115_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7fff06bcce10
+                                           ;;genSkipc:3307: created from rifx:0x7ffce71a0f00
                                            ;;unsigned compare: left < lit(0x9=9), size=2
-                                           ;	.line	47; "blink.c"	if (random_1<9) {random_1 = random_1 + 1;}
+                                           ;	.line	45; "blink.c"	if (random_1<9) {random_1 = random_1 + 1;}
 00013a   3000     movlw   0x00             	MOVLW	0x00
 00013b   0231     subwf   0x31, 0x0        	SUBWF	r0x101C,W
 00013c   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
@@ -226,18 +226,18 @@ Address  Value    Disassembly              Source
                                            _00142_DS_:
 000140   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 000141   2946     goto    0x0146           	GOTO	_00106_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7fff06bcce10
+                                           ;;genSkipc:3307: created from rifx:0x7ffce71a0f00
 000142   0ab0     incf    0x30, 0x1        	INCF	r0x101B,F
 000143   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000144   0ab1     incf    0x31, 0x1        	INCF	r0x101C,F
 000145   2948     goto    0x0148           	GOTO	_00107_DS_
                                            _00106_DS_:
-                                           ;	.line	48; "blink.c"	else random_1 = 0;
+                                           ;	.line	46; "blink.c"	else random_1 = 0;
 000146   01b0     clrf    0x30             	CLRF	r0x101B
 000147   01b1     clrf    0x31             	CLRF	r0x101C
                                            ;;unsigned compare: left < lit(0x9=9), size=2
                                            _00107_DS_:
-                                           ;	.line	49; "blink.c"	if (random_2<9) {random_2 = random_2 + 1;}
+                                           ;	.line	47; "blink.c"	if (random_2<9) {random_2 = random_2 + 1;}
 000148   3000     movlw   0x00             	MOVLW	0x00
 000149   0233     subwf   0x33, 0x0        	SUBWF	r0x101E,W
 00014a   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
@@ -247,17 +247,17 @@ Address  Value    Disassembly              Source
                                            _00143_DS_:
 00014e   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 00014f   2954     goto    0x0154           	GOTO	_00109_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7fff06bcce10
+                                           ;;genSkipc:3307: created from rifx:0x7ffce71a0f00
 000150   0ab2     incf    0x32, 0x1        	INCF	r0x101D,F
 000151   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000152   0ab3     incf    0x33, 0x1        	INCF	r0x101E,F
 000153   2956     goto    0x0156           	GOTO	_00110_DS_
                                            _00109_DS_:
-                                           ;	.line	50; "blink.c"	else random_2 = 0;
+                                           ;	.line	48; "blink.c"	else random_2 = 0;
 000154   01b2     clrf    0x32             	CLRF	r0x101D
 000155   01b3     clrf    0x33             	CLRF	r0x101E
                                            _00110_DS_:
-                                           ;	.line	51; "blink.c"	if(BOTON == 1)  {
+                                           ;	.line	49; "blink.c"	if(BOTON == 1)  {
 000156   01b6     clrf    0x36             	CLRF	r0x1021
 000157   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 000158   1985     btfsc   0x05, 0x3        	BTFSC	_GPIObits,3
@@ -266,7 +266,7 @@ Address  Value    Disassembly              Source
 00015b   3a01     xorlw   0x01             	XORLW	0x01
 00015c   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
 00015d   2969     goto    0x0169           	GOTO	_00112_DS_
-                                           ;	.line	52; "blink.c"	DisplayData(random_1, random_2);
+                                           ;	.line	50; "blink.c"	DisplayData(random_1, random_2);
 00015e   0832     movf    0x32, 0x0        	MOVF	r0x101D,W
 00015f   00ad     movwf   0x2d             	MOVWF	STK02
 000160   0833     movf    0x33, 0x0        	MOVF	r0x101E,W
@@ -277,27 +277,27 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 000165   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	53; "blink.c"	contador= contador + 1;  
+                                           ;	.line	51; "blink.c"	contador= contador + 1;  
 000166   0ab4     incf    0x34, 0x1        	INCF	r0x101F,F
 000167   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000168   0ab5     incf    0x35, 0x1        	INCF	r0x1020,F
                                            _00112_DS_:
-                                           ;	.line	55; "blink.c"	BOTON = 0;
+                                           ;	.line	53; "blink.c"	BOTON = 0;
 000169   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 00016a   1185     bcf     0x05, 0x3        	BCF	_GPIObits,3
 00016b   2932     goto    0x0132           	GOTO	_00113_DS_
                                            _00115_DS_:
-                                           ;	.line	57; "blink.c"	delay(50);
+                                           ;	.line	55; "blink.c"	delay(50);
 00016c   3032     movlw   0x32             	MOVLW	0x32
 00016d   00af     movwf   0x2f             	MOVWF	STK00
 00016e   3000     movlw   0x00             	MOVLW	0x00
                                            	PAGESEL	_delay
 00016f   21e2     call    0x01e2           	CALL	_delay
                                            	PAGESEL	$
-                                           ;	.line	58; "blink.c"	GPIO=0x00;
+                                           ;	.line	56; "blink.c"	GPIO=0x00;
 000170   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
 000171   0185     clrf    0x05             	CLRF	_GPIO
-                                           ;	.line	59; "blink.c"	DisplayData(0xD,0xD);
+                                           ;	.line	57; "blink.c"	DisplayData(0xD,0xD);
 000172   300d     movlw   0x0d             	MOVLW	0x0d
 000173   00ad     movwf   0x2d             	MOVWF	STK02
 000174   3000     movlw   0x00             	MOVLW	0x00
@@ -308,7 +308,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 000179   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	60; "blink.c"	DisplayData(9,9);
+                                           ;	.line	58; "blink.c"	DisplayData(9,9);
 00017a   3009     movlw   0x09             	MOVLW	0x09
 00017b   00ad     movwf   0x2d             	MOVWF	STK02
 00017c   3000     movlw   0x00             	MOVLW	0x00
@@ -319,7 +319,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 000181   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	61; "blink.c"	DisplayData(0xD,0xD);
+                                           ;	.line	59; "blink.c"	DisplayData(0xD,0xD);
 000182   300d     movlw   0x0d             	MOVLW	0x0d
 000183   00ad     movwf   0x2d             	MOVWF	STK02
 000184   3000     movlw   0x00             	MOVLW	0x00
@@ -330,7 +330,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 000189   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	62; "blink.c"	DisplayData(9,9);
+                                           ;	.line	60; "blink.c"	DisplayData(9,9);
 00018a   3009     movlw   0x09             	MOVLW	0x09
 00018b   00ad     movwf   0x2d             	MOVWF	STK02
 00018c   3000     movlw   0x00             	MOVLW	0x00
@@ -341,7 +341,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 000191   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	63; "blink.c"	DisplayData(0xD,0xD);
+                                           ;	.line	61; "blink.c"	DisplayData(0xD,0xD);
 000192   300d     movlw   0x0d             	MOVLW	0x0d
 000193   00ad     movwf   0x2d             	MOVWF	STK02
 000194   3000     movlw   0x00             	MOVLW	0x00
@@ -352,7 +352,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 000199   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	64; "blink.c"	DisplayData(9,9);
+                                           ;	.line	62; "blink.c"	DisplayData(9,9);
 00019a   3009     movlw   0x09             	MOVLW	0x09
 00019b   00ad     movwf   0x2d             	MOVWF	STK02
 00019c   3000     movlw   0x00             	MOVLW	0x00
@@ -363,7 +363,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 0001a1   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	65; "blink.c"	DisplayData(0xD,0xD);
+                                           ;	.line	63; "blink.c"	DisplayData(0xD,0xD);
 0001a2   300d     movlw   0x0d             	MOVLW	0x0d
 0001a3   00ad     movwf   0x2d             	MOVWF	STK02
 0001a4   3000     movlw   0x00             	MOVLW	0x00
@@ -374,11 +374,11 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_DisplayData
 0001a9   209e     call    0x009e           	CALL	_DisplayData
                                            	PAGESEL	$
-                                           ;	.line	67; "blink.c"	contador=0;
+                                           ;	.line	65; "blink.c"	contador=0;
 0001aa   01b4     clrf    0x34             	CLRF	r0x101F
 0001ab   01b5     clrf    0x35             	CLRF	r0x1020
 0001ac   2932     goto    0x0132           	GOTO	_00113_DS_
-                                           ;	.line	70; "blink.c"	}
+                                           ;	.line	68; "blink.c"	}
 0001ad   0008     return                   	RETURN	
                                            ; exit point of _main
                                            
@@ -408,7 +408,7 @@ Address  Value    Disassembly              Source
                                            S_blink__DisplayData	code
                                            _DisplayData:
                                            ; 2 exit points
-                                           ;	.line	105; "blink.c"	void DisplayData(unsigned int data1,  unsigned int data2){
+                                           ;	.line	100; "blink.c"	void DisplayData(unsigned int data1,  unsigned int data2){
 00009e   00c0     movwf   0x40             	MOVWF	r0x1012
 00009f   082f     movf    0x2f, 0x0        	MOVF	STK00,W
 0000a0   00bf     movwf   0x3f             	MOVWF	r0x1013
@@ -416,7 +416,7 @@ Address  Value    Disassembly              Source
 0000a2   00c2     movwf   0x42             	MOVWF	r0x1014
 0000a3   082d     movf    0x2d, 0x0        	MOVF	STK02,W
 0000a4   00c1     movwf   0x41             	MOVWF	r0x1015
-                                           ;	.line	106; "blink.c"	if (data1 == 0xD) {data1= 0x00; data2=0x00;}
+                                           ;	.line	101; "blink.c"	if (data1 == 0xD) {data1= 0x00; data2=0x00;}
 0000a5   083f     movf    0x3f, 0x0        	MOVF	r0x1013,W
 0000a6   3a0d     xorlw   0x0d             	XORLW	0x0d
 0000a7   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
@@ -431,7 +431,7 @@ Address  Value    Disassembly              Source
 0000b0   01c4     clrf    0x44             	CLRF	r0x1017
 0000b1   28d6     goto    0x00d6           	GOTO	_00203_DS_
                                            _00193_DS_:
-                                           ;	.line	108; "blink.c"	data1 = data[data1];
+                                           ;	.line	103; "blink.c"	data1 = data[data1];
 0000b2   083f     movf    0x3f, 0x0        	MOVF	r0x1013,W
 0000b3   3e54     addlw   0x54             	ADDLW	(_data + 0)
 0000b4   00c5     movwf   0x45             	MOVWF	r0x1018
@@ -450,7 +450,7 @@ Address  Value    Disassembly              Source
 0000c1   00c7     movwf   0x47             	MOVWF	r0x101A
 0000c2   00bf     movwf   0x3f             	MOVWF	r0x1013
 0000c3   01c0     clrf    0x40             	CLRF	r0x1012
-                                           ;	.line	109; "blink.c"	data2 = data[data2];
+                                           ;	.line	104; "blink.c"	data2 = data[data2];
 0000c4   0841     movf    0x41, 0x0        	MOVF	r0x1015,W
 0000c5   3e54     addlw   0x54             	ADDLW	(_data + 0)
 0000c6   00c7     movwf   0x47             	MOVWF	r0x101A
@@ -470,7 +470,7 @@ Address  Value    Disassembly              Source
 0000d4   00c3     movwf   0x43             	MOVWF	r0x1016
 0000d5   01c4     clrf    0x44             	CLRF	r0x1017
                                            _00203_DS_:
-                                           ;	.line	111; "blink.c"	for (int i=0 ; i<8 ; i++){
+                                           ;	.line	106; "blink.c"	for (int i=0 ; i<8 ; i++){
 0000d6   01c1     clrf    0x41             	CLRF	r0x1015
 0000d7   01c2     clrf    0x42             	CLRF	r0x1014
                                            ;;signed compare: left < lit(0x8=8), size=2, mask=ffff
@@ -485,8 +485,8 @@ Address  Value    Disassembly              Source
                                            _00217_DS_:
 0000df   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 0000e0   2928     goto    0x0128           	GOTO	_00195_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7fff06bcce10
-                                           ;	.line	112; "blink.c"	DATA_GP0 = (data1 >> i) & 0x01; // bit shift and bit mask data.
+                                           ;;genSkipc:3307: created from rifx:0x7ffce71a0f00
+                                           ;	.line	107; "blink.c"	DATA_GP0 = (data1 >> i) & 0x01; // bit shift and bit mask data.
 0000e1   0840     movf    0x40, 0x0        	MOVF	r0x1012,W
 0000e2   00c6     movwf   0x46             	MOVWF	r0x1019
 0000e3   083f     movf    0x3f, 0x0        	MOVF	r0x1013,W
@@ -526,7 +526,7 @@ Address  Value    Disassembly              Source
 000100   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 000101   1405     bsf     0x05, 0x0        	BSF	_GPIObits,0
                                            _00002_DS_:
-                                           ;	.line	113; "blink.c"	DATA_GP4 = (data2 >> i) & 0x01; // bit shift and bit mask data.
+                                           ;	.line	108; "blink.c"	DATA_GP4 = (data2 >> i) & 0x01; // bit shift and bit mask data.
 000102   0844     movf    0x44, 0x0        	MOVF	r0x1017,W
 000103   00c6     movwf   0x46             	MOVWF	r0x1019
 000104   0843     movf    0x43, 0x0        	MOVF	r0x1016,W
@@ -566,21 +566,21 @@ Address  Value    Disassembly              Source
 000121   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 000122   1605     bsf     0x05, 0x4        	BSF	_GPIObits,4
                                            _00004_DS_:
-                                           ;	.line	114; "blink.c"	main_clock(); //enable data storage clock
+                                           ;	.line	109; "blink.c"	main_clock(); //enable data storage clock
                                            	PAGESEL	_main_clock
 000123   2217     call    0x0217           	CALL	_main_clock
                                            	PAGESEL	$
-                                           ;	.line	111; "blink.c"	for (int i=0 ; i<8 ; i++){
+                                           ;	.line	106; "blink.c"	for (int i=0 ; i<8 ; i++){
 000124   0ac1     incf    0x41, 0x1        	INCF	r0x1015,F
 000125   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000126   0ac2     incf    0x42, 0x1        	INCF	r0x1014,F
 000127   28d8     goto    0x00d8           	GOTO	_00197_DS_
                                            _00195_DS_:
-                                           ;	.line	116; "blink.c"	latch_clock(); // Data latch
+                                           ;	.line	111; "blink.c"	latch_clock(); // Data latch
                                            	PAGESEL	_latch_clock
 000128   222e     call    0x022e           	CALL	_latch_clock
                                            	PAGESEL	$
-                                           ;	.line	117; "blink.c"	}
+                                           ;	.line	112; "blink.c"	}
 000129   0008     return                   	RETURN	
                                            ; exit point of _DisplayData
                                            
@@ -597,20 +597,20 @@ Address  Value    Disassembly              Source
                                            S_blink__latch_clock	code
                                            _latch_clock:
                                            ; 2 exit points
-                                           ;	.line	100; "blink.c"	RCLK = 1;
+                                           ;	.line	95; "blink.c"	RCLK = 1;
 00022e   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 00022f   1485     bsf     0x05, 0x1        	BSF	_GPIObits,1
-                                           ;	.line	101; "blink.c"	delay(10);
+                                           ;	.line	96; "blink.c"	delay(10);
 000230   300a     movlw   0x0a             	MOVLW	0x0a
 000231   00af     movwf   0x2f             	MOVWF	STK00
 000232   3000     movlw   0x00             	MOVLW	0x00
                                            	PAGESEL	_delay
 000233   21e2     call    0x01e2           	CALL	_delay
                                            	PAGESEL	$
-                                           ;	.line	102; "blink.c"	RCLK = 0;
+                                           ;	.line	97; "blink.c"	RCLK = 0;
 000234   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 000235   1085     bcf     0x05, 0x1        	BCF	_GPIObits,1
-                                           ;	.line	103; "blink.c"	}
+                                           ;	.line	98; "blink.c"	}
 000236   0008     return                   	RETURN	
                                            ; exit point of _latch_clock
                                            
@@ -629,27 +629,27 @@ Address  Value    Disassembly              Source
                                            S_blink__main_clock	code
                                            _main_clock:
                                            ; 2 exit points
-                                           ;	.line	93; "blink.c"	SCLK = 1;
+                                           ;	.line	88; "blink.c"	SCLK = 1;
 000217   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 000218   1505     bsf     0x05, 0x2        	BSF	_GPIObits,2
-                                           ;	.line	94; "blink.c"	delay(10);
+                                           ;	.line	89; "blink.c"	delay(10);
 000219   300a     movlw   0x0a             	MOVLW	0x0a
 00021a   00af     movwf   0x2f             	MOVWF	STK00
 00021b   3000     movlw   0x00             	MOVLW	0x00
                                            	PAGESEL	_delay
 00021c   21e2     call    0x01e2           	CALL	_delay
                                            	PAGESEL	$
-                                           ;	.line	95; "blink.c"	SCLK = 0;
+                                           ;	.line	90; "blink.c"	SCLK = 0;
 00021d   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 00021e   1105     bcf     0x05, 0x2        	BCF	_GPIObits,2
-                                           ;	.line	96; "blink.c"	delay(10);
+                                           ;	.line	91; "blink.c"	delay(10);
 00021f   300a     movlw   0x0a             	MOVLW	0x0a
 000220   00af     movwf   0x2f             	MOVWF	STK00
 000221   3000     movlw   0x00             	MOVLW	0x00
                                            	PAGESEL	_delay
 000222   21e2     call    0x01e2           	CALL	_delay
                                            	PAGESEL	$
-                                           ;	.line	97; "blink.c"	}
+                                           ;	.line	92; "blink.c"	}
 000223   0008     return                   	RETURN	
                                            ; exit point of _main_clock
                                            
@@ -661,17 +661,17 @@ Address  Value    Disassembly              Source
                                            S_blink__setup_mic	code
                                            _setup_mic:
                                            ; 2 exit points
-                                           ;	.line	86; "blink.c"	TRISIO = 0b00001000;       // GP3 input, rest all output
+                                           ;	.line	81; "blink.c"	TRISIO = 0b00001000;       // GP3 input, rest all output
 000237   3008     movlw   0x08             	MOVLW	0x08
 000238   1683     bsf     0x03, 0x5        	BANKSEL	_TRISIO
 000239   0085     movwf   0x05             	MOVWF	_TRISIO
-                                           ;	.line	87; "blink.c"	GPIO=0x00;           // set all pins low
+                                           ;	.line	82; "blink.c"	GPIO=0x00;           // set all pins low
 00023a   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
 00023b   0185     clrf    0x05             	CLRF	_GPIO
-                                           ;	.line	88; "blink.c"	ANSEL = 0; // Pins to digital  
+                                           ;	.line	83; "blink.c"	ANSEL = 0; // Pins to digital  
 00023c   1683     bsf     0x03, 0x5        	BANKSEL	_ANSEL
 00023d   019f     clrf    0x1f             	CLRF	_ANSEL
-                                           ;	.line	89; "blink.c"	}
+                                           ;	.line	84; "blink.c"	}
 00023e   0008     return                   	RETURN	
                                            ; exit point of _setup_mic
                                            
@@ -693,11 +693,11 @@ Address  Value    Disassembly              Source
                                            S_blink__delay	code
                                            _delay:
                                            ; 2 exit points
-                                           ;	.line	72; "blink.c"	void delay(unsigned int tiempo)
+                                           ;	.line	70; "blink.c"	void delay(unsigned int tiempo)
 0001e2   00b8     movwf   0x38             	MOVWF	r0x100A
 0001e3   082f     movf    0x2f, 0x0        	MOVF	STK00,W
 0001e4   00b7     movwf   0x37             	MOVWF	r0x100B
-                                           ;	.line	77; "blink.c"	for(i=0;i<tiempo;i++)
+                                           ;	.line	75; "blink.c"	for(i=0;i<tiempo;i++)
 0001e5   01b9     clrf    0x39             	CLRF	r0x100C
 0001e6   01ba     clrf    0x3a             	CLRF	r0x100D
                                            _00154_DS_:
@@ -710,8 +710,8 @@ Address  Value    Disassembly              Source
                                            _00175_DS_:
 0001ed   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 0001ee   2a08     goto    0x0208           	GOTO	_00156_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7fff06bcce10
-                                           ;	.line	78; "blink.c"	for(j=0;j<1275;j++);
+                                           ;;genSkipc:3307: created from rifx:0x7ffce71a0f00
+                                           ;	.line	76; "blink.c"	for(j=0;j<1275;j++);
 0001ef   30fb     movlw   0xfb             	MOVLW	0xfb
 0001f0   00bb     movwf   0x3b             	MOVWF	r0x100E
 0001f1   3004     movlw   0x04             	MOVLW	0x04
@@ -734,13 +734,13 @@ Address  Value    Disassembly              Source
 000201   043d     iorwf   0x3d, 0x0        	IORWF	r0x1010,W
 000202   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
 000203   29f3     goto    0x01f3           	GOTO	_00152_DS_
-                                           ;	.line	77; "blink.c"	for(i=0;i<tiempo;i++)
+                                           ;	.line	75; "blink.c"	for(i=0;i<tiempo;i++)
 000204   0ab9     incf    0x39, 0x1        	INCF	r0x100C,F
 000205   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000206   0aba     incf    0x3a, 0x1        	INCF	r0x100D,F
 000207   29e7     goto    0x01e7           	GOTO	_00154_DS_
                                            _00156_DS_:
-                                           ;	.line	79; "blink.c"	}
+                                           ;	.line	77; "blink.c"	}
 000208   0008     return                   	RETURN	
                                            ; exit point of _delay
                                            
