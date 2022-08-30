@@ -1,28 +1,13 @@
 #include <pic14/pic12f675.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <time.h>  /* for time() */
 
 //To compile:
-//sdcc -mpic14 -p16f675 blink.c
- 
-//To program the chip using picp:
-//Assuming /dev/ttyUSB0 is the serial port.
- 
-//Erase the chip:
-//picp /dev/ttyUSB0 16f887 -ef
- 
-//Write the program:
-//picp /dev/ttyUSB0 16f887 -wp blink.hex
- 
-//Write the configuration words (optional):
-//picp /dev/ttyUSB0 16f887 -wc 0x2ff4 0x3fff
- 
-//Doing it all at once: erasing, programming, and reading back config words:
-//picp /dev/ttyUSB0 16f887 -ef -wp blink.hex -rc
- 
-//To program the chip using pk2cmd:
-//pk2cmd -M -PPIC16f887 -Fblink.hex
+// run make and use .hex as firmware in the circuit
+
+/* Defining configuration*/
+
 #pragma config FOSC = INTRCIO   // Oscillator Selection bits (INTOSC oscillator: I/O function on GP4/OSC2/CLKOUT pin, I/O function on GP5/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
 #pragma config PWRTE = OFF      // Power-Up Timer Enable bit (PWRT disabled)
@@ -31,15 +16,17 @@
 #pragma config CP = OFF         // Code Protection bit (Program Memory code protection is disabled)
 #pragma config CPD = OFF // Data Code Protection bit (Data memory code protection is disabled)
 
- /*define clock freq*/
-#define _XTAL_FREQ 4000000  // 4MHZ internal crystal
-// Interfacing 74HC595 Serial Shift Register
-#define SER_595 GP0 //serial data in pin 14 
-#define RCLK_595 GP1  // storage register clock input pin 12 "latch" or Rclk
-#define SCLK_595 GP2 //shift register clock input pin 11 "storage" or sclk
-#define SER2_595 GP4 //serial data in pin 14 
-#define BOTON GP3
-//seven segment symbols
+ /*Define clock freq*/
+#define FREQ 4000000  // 4MHZ 
+
+/*Define the GPOs name*/
+#define DATA_GP0 GP0 // data for led 1
+#define RCLK GP1  // storage register clock input or latch
+#define SCLK GP2 //shift register clock 
+#define DATA_GP4 GP4 // data for led 2
+#define BOTON GP3 // data input for the button
+
+//Prove symbols for the 7 segment
 #define sym_b 0x3F     // b fgedc 1111100 
 #define sym_t 0x06     // t fged 1111000 
 #define sym_H  0x5B    // H fegbc 1110110
@@ -47,21 +34,24 @@
 #define sym_C  0x39     // C 
 #define sym_DASH  0x5B    // -
 
-
+// Symbols for numbers 0-9 in the 7 segment LED
 char data[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x67}; 
-unsigned short  Check;
 
+/* Defining functions to use*/
 
 void delay (unsigned inttiempo);
-void setup(void);
-void sclock(void);
-void rclock(void);
-void DataDisplay(unsigned int data, unsigned int data2);
+void setup_mic(void);
+void main_clock(void);
+void latch_clock(void);
+void DisplayData(unsigned int data, unsigned int data2);
+unsigned int random();
+
+/*MAIN*/
 
 void main(void)
 {
 
-    setup();
+    setup_mic();
  
     unsigned int time1 = 100;
  
@@ -69,21 +59,23 @@ void main(void)
         unsigned int contador = 0;
         while (contador <= 3){
             if(BOTON == 1)  {
-                DataDisplay(sym_t, sym_H);
+                //int data1 = random();
+                //int data2 = random();
+                //DisplayData(data1, data2);
                 contador= contador + 1;  // Display b to LED seven segment (i.e. begin loop )
             }
             BOTON = 0;
 
         }
 
-        DataDisplay(data[9], data[9]);
-        DataDisplay(0x00, 0x00);
+        DisplayData(data[9], data[9]);
+        DisplayData(0x00, 0x00);
         delay(10);
-        DataDisplay(data[9], data[9]);
-        DataDisplay(0x00, 0x00);
+        DisplayData(data[9], data[9]);
+        DisplayData(0x00, 0x00);
         delay(10);
-        DataDisplay(data[9], data[9]);
-        DataDisplay(0x00, 0x00);
+        DisplayData(data[9], data[9]);
+        DisplayData(0x00, 0x00);
         delay(10);
         GPIO=0x00; 
    
@@ -101,38 +93,38 @@ void delay(unsigned int tiempo)
 	  for(j=0;j<1275;j++);
 }
 
-void setup (void)
+void setup_mic (void)
 {
     //ADCON0 = 0x00;        // Turn off the A/D Converter ADFM and ADON 
     //CMCON = 0x07;		 // Shut off the Comparator
     //VRCON = 0x00;        // Shut off the Voltage Reference
-    TRISIO = 0b00001000;       // GP4 and GP3 input, rest all output 011000
+    TRISIO = 0b00001000;       // GP3 input, rest all output
     GPIO=0x00;           // set all pins low
-    ANSEL = 0; // Pines digital   
+    ANSEL = 0; // Pins to digital  
 }
 
 
-void sclock(void){
-    SCLK_595 = 1;
+void main_clock(void){
+    SCLK = 1;
     delay(10);
-    SCLK_595 = 0;
+    SCLK = 0;
     delay(10);
 }
 
-void rclock(void){
-    RCLK_595 = 1;
+void latch_clock(void){
+    RCLK = 1;
     delay(10);
-    RCLK_595 = 0;
+    RCLK = 0;
     }
 
-void DataDisplay(unsigned int data1,  unsigned int data2){
+void DisplayData(unsigned int data1,  unsigned int data2){
     for (int i=0 ; i<8 ; i++){
-		SER_595 = (data1 >> i) & 0x01; // bit shift and bit mask data.
-		SER2_595 = (data2 >> i) & 0x01; // bit shift and bit mask data.
+		DATA_GP0 = (data1 >> i) & 0x01; // bit shift and bit mask data.
+		DATA_GP4 = (data2 >> i) & 0x01; // bit shift and bit mask data.
 		
-        sclock(); //enable data storage clock
+        main_clock(); //enable data storage clock
     }
-    rclock(); // Data latch
+    latch_clock(); // Data latch
 }
 
 

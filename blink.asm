@@ -20,13 +20,12 @@
 ; global declarations
 ;--------------------------------------------------------
 	global	_main
-	global	_Check
 	global	_data
 	global	_delay
-	global	_setup
-	global	_sclock
-	global	_rclock
-	global	_DataDisplay
+	global	_setup_mic
+	global	_main_clock
+	global	_latch_clock
+	global	_DisplayData
 
 	global PSAVE
 	global SSAVE
@@ -66,9 +65,6 @@ STK00	res 1
 ;--------------------------------------------------------
 ; global definitions
 ;--------------------------------------------------------
-UD_blink_0	udata
-_Check	res	2
-
 ;--------------------------------------------------------
 ; absolute symbol definitions
 ;--------------------------------------------------------
@@ -136,27 +132,25 @@ code_blink	code
 ;***
 ;has an exit
 ;functions called:
-;   _setup
-;   _DataDisplay
-;   _DataDisplay
-;   _DataDisplay
+;   _setup_mic
+;   _DisplayData
+;   _DisplayData
 ;   _delay
-;   _DataDisplay
-;   _DataDisplay
+;   _DisplayData
+;   _DisplayData
 ;   _delay
-;   _DataDisplay
-;   _DataDisplay
+;   _DisplayData
+;   _DisplayData
 ;   _delay
-;   _setup
-;   _DataDisplay
-;   _DataDisplay
-;   _DataDisplay
+;   _setup_mic
+;   _DisplayData
+;   _DisplayData
 ;   _delay
-;   _DataDisplay
-;   _DataDisplay
+;   _DisplayData
+;   _DisplayData
 ;   _delay
-;   _DataDisplay
-;   _DataDisplay
+;   _DisplayData
+;   _DisplayData
 ;   _delay
 ;6 compiler assigned registers:
 ;   r0x101B
@@ -169,11 +163,11 @@ code_blink	code
 S_blink__main	code
 _main:
 ; 2 exit points
-;	.line	64; "blink.c"	setup();
-	PAGESEL	_setup
-	CALL	_setup
+;	.line	54; "blink.c"	setup_mic();
+	PAGESEL	_setup_mic
+	CALL	_setup_mic
 	PAGESEL	$
-;	.line	70; "blink.c"	while (contador <= 3){
+;	.line	60; "blink.c"	while (contador <= 3){
 	CLRF	r0x101B
 	CLRF	r0x101C
 ;;swapping arguments (AOP_TYPEs 1/2)
@@ -188,8 +182,8 @@ _00107_DS_:
 _00128_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00109_DS_
-;;genSkipc:3307: created from rifx:0x7ffeb4533ab0
-;	.line	71; "blink.c"	if(BOTON == 1)  {
+;;genSkipc:3307: created from rifx:0x7ffeabd0c3b0
+;	.line	61; "blink.c"	if(BOTON == 1)  {
 	CLRF	r0x101D
 	BANKSEL	_GPIObits
 	BTFSC	_GPIObits,3
@@ -198,28 +192,17 @@ _00128_DS_:
 	XORLW	0x01
 	BTFSS	STATUS,2
 	GOTO	_00106_DS_
-;	.line	72; "blink.c"	DataDisplay(sym_t, sym_H);
-	MOVLW	0x5b
-	MOVWF	STK02
-	MOVLW	0x00
-	MOVWF	STK01
-	MOVLW	0x06
-	MOVWF	STK00
-	MOVLW	0x00
-	PAGESEL	_DataDisplay
-	CALL	_DataDisplay
-	PAGESEL	$
-;	.line	73; "blink.c"	contador= contador + 1;  // Display b to LED seven segment (i.e. begin loop )
+;	.line	65; "blink.c"	contador= contador + 1;  // Display b to LED seven segment (i.e. begin loop )
 	INCF	r0x101B,F
 	BTFSC	STATUS,2
 	INCF	r0x101C,F
 _00106_DS_:
-;	.line	75; "blink.c"	BOTON = 0;
+;	.line	67; "blink.c"	BOTON = 0;
 	BANKSEL	_GPIObits
 	BCF	_GPIObits,3
 	GOTO	_00107_DS_
 _00109_DS_:
-;	.line	79; "blink.c"	DataDisplay(data[9], data[9]);
+;	.line	71; "blink.c"	DisplayData(data[9], data[9]);
 	MOVF	(_data + 9),W
 	MOVWF	r0x101B
 	MOVWF	r0x101C
@@ -231,10 +214,10 @@ _00109_DS_:
 	MOVF	r0x101C,W
 	MOVWF	STK00
 	MOVLW	0x00
-	PAGESEL	_DataDisplay
-	CALL	_DataDisplay
+	PAGESEL	_DisplayData
+	CALL	_DisplayData
 	PAGESEL	$
-;	.line	80; "blink.c"	DataDisplay(0x00, 0x00);
+;	.line	72; "blink.c"	DisplayData(0x00, 0x00);
 	MOVLW	0x00
 	MOVWF	STK02
 	MOVLW	0x00
@@ -242,17 +225,17 @@ _00109_DS_:
 	MOVLW	0x00
 	MOVWF	STK00
 	MOVLW	0x00
-	PAGESEL	_DataDisplay
-	CALL	_DataDisplay
+	PAGESEL	_DisplayData
+	CALL	_DisplayData
 	PAGESEL	$
-;	.line	81; "blink.c"	delay(10);
+;	.line	73; "blink.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	82; "blink.c"	DataDisplay(data[9], data[9]);
+;	.line	74; "blink.c"	DisplayData(data[9], data[9]);
 	MOVF	(_data + 9),W
 	MOVWF	r0x101B
 	MOVWF	r0x101C
@@ -264,10 +247,10 @@ _00109_DS_:
 	MOVF	r0x101C,W
 	MOVWF	STK00
 	MOVLW	0x00
-	PAGESEL	_DataDisplay
-	CALL	_DataDisplay
+	PAGESEL	_DisplayData
+	CALL	_DisplayData
 	PAGESEL	$
-;	.line	83; "blink.c"	DataDisplay(0x00, 0x00);
+;	.line	75; "blink.c"	DisplayData(0x00, 0x00);
 	MOVLW	0x00
 	MOVWF	STK02
 	MOVLW	0x00
@@ -275,17 +258,17 @@ _00109_DS_:
 	MOVLW	0x00
 	MOVWF	STK00
 	MOVLW	0x00
-	PAGESEL	_DataDisplay
-	CALL	_DataDisplay
+	PAGESEL	_DisplayData
+	CALL	_DisplayData
 	PAGESEL	$
-;	.line	84; "blink.c"	delay(10);
+;	.line	76; "blink.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	85; "blink.c"	DataDisplay(data[9], data[9]);
+;	.line	77; "blink.c"	DisplayData(data[9], data[9]);
 	MOVF	(_data + 9),W
 	MOVWF	r0x101B
 	MOVWF	r0x101C
@@ -297,10 +280,10 @@ _00109_DS_:
 	MOVF	r0x101C,W
 	MOVWF	STK00
 	MOVLW	0x00
-	PAGESEL	_DataDisplay
-	CALL	_DataDisplay
+	PAGESEL	_DisplayData
+	CALL	_DisplayData
 	PAGESEL	$
-;	.line	86; "blink.c"	DataDisplay(0x00, 0x00);
+;	.line	78; "blink.c"	DisplayData(0x00, 0x00);
 	MOVLW	0x00
 	MOVWF	STK02
 	MOVLW	0x00
@@ -308,20 +291,20 @@ _00109_DS_:
 	MOVLW	0x00
 	MOVWF	STK00
 	MOVLW	0x00
-	PAGESEL	_DataDisplay
-	CALL	_DataDisplay
+	PAGESEL	_DisplayData
+	CALL	_DisplayData
 	PAGESEL	$
-;	.line	87; "blink.c"	delay(10);
+;	.line	79; "blink.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	88; "blink.c"	GPIO=0x00; 
+;	.line	80; "blink.c"	GPIO=0x00; 
 	BANKSEL	_GPIO
 	CLRF	_GPIO
-;	.line	93; "blink.c"	}
+;	.line	85; "blink.c"	}
 	RETURN	
 ; exit point of _main
 
@@ -330,10 +313,10 @@ _00109_DS_:
 ;***
 ;has an exit
 ;functions called:
-;   _sclock
-;   _rclock
-;   _sclock
-;   _rclock
+;   _main_clock
+;   _latch_clock
+;   _main_clock
+;   _latch_clock
 ;12 compiler assigned registers:
 ;   r0x1012
 ;   STK00
@@ -348,10 +331,10 @@ _00109_DS_:
 ;   r0x1019
 ;   r0x101A
 ;; Starting pCode block
-S_blink__DataDisplay	code
-_DataDisplay:
+S_blink__DisplayData	code
+_DisplayData:
 ; 2 exit points
-;	.line	128; "blink.c"	void DataDisplay(unsigned int data1,  unsigned int data2){
+;	.line	120; "blink.c"	void DisplayData(unsigned int data1,  unsigned int data2){
 	MOVWF	r0x1012
 	MOVF	STK00,W
 	MOVWF	r0x1013
@@ -359,7 +342,7 @@ _DataDisplay:
 	MOVWF	r0x1014
 	MOVF	STK02,W
 	MOVWF	r0x1015
-;	.line	129; "blink.c"	for (int i=0 ; i<8 ; i++){
+;	.line	121; "blink.c"	for (int i=0 ; i<8 ; i++){
 	CLRF	r0x1016
 	CLRF	r0x1017
 ;;signed compare: left < lit(0x8=8), size=2, mask=ffff
@@ -374,8 +357,8 @@ _00179_DS_:
 _00192_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00177_DS_
-;;genSkipc:3307: created from rifx:0x7ffeb4533ab0
-;	.line	130; "blink.c"	SER_595 = (data1 >> i) & 0x01; // bit shift and bit mask data.
+;;genSkipc:3307: created from rifx:0x7ffeabd0c3b0
+;	.line	122; "blink.c"	DATA_GP0 = (data1 >> i) & 0x01; // bit shift and bit mask data.
 	MOVF	r0x1012,W
 	MOVWF	r0x1018
 	MOVF	r0x1013,W
@@ -415,7 +398,7 @@ _00001_DS_:
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,0
 _00002_DS_:
-;	.line	131; "blink.c"	SER2_595 = (data2 >> i) & 0x01; // bit shift and bit mask data.
+;	.line	123; "blink.c"	DATA_GP4 = (data2 >> i) & 0x01; // bit shift and bit mask data.
 	MOVF	r0x1014,W
 	MOVWF	r0x1018
 	MOVF	r0x1015,W
@@ -455,23 +438,23 @@ _00003_DS_:
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,4
 _00004_DS_:
-;	.line	133; "blink.c"	sclock(); //enable data storage clock
-	PAGESEL	_sclock
-	CALL	_sclock
+;	.line	125; "blink.c"	main_clock(); //enable data storage clock
+	PAGESEL	_main_clock
+	CALL	_main_clock
 	PAGESEL	$
-;	.line	129; "blink.c"	for (int i=0 ; i<8 ; i++){
+;	.line	121; "blink.c"	for (int i=0 ; i<8 ; i++){
 	INCF	r0x1016,F
 	BTFSC	STATUS,2
 	INCF	r0x1017,F
 	GOTO	_00179_DS_
 _00177_DS_:
-;	.line	135; "blink.c"	rclock(); // Data latch
-	PAGESEL	_rclock
-	CALL	_rclock
+;	.line	127; "blink.c"	latch_clock(); // Data latch
+	PAGESEL	_latch_clock
+	CALL	_latch_clock
 	PAGESEL	$
-;	.line	136; "blink.c"	}
+;	.line	128; "blink.c"	}
 	RETURN	
-; exit point of _DataDisplay
+; exit point of _DisplayData
 
 ;***
 ;  pBlock Stats: dbName = C
@@ -483,25 +466,25 @@ _00177_DS_:
 ;1 compiler assigned register :
 ;   STK00
 ;; Starting pCode block
-S_blink__rclock	code
-_rclock:
+S_blink__latch_clock	code
+_latch_clock:
 ; 2 exit points
-;	.line	123; "blink.c"	RCLK_595 = 1;
+;	.line	115; "blink.c"	RCLK = 1;
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,1
-;	.line	124; "blink.c"	delay(10);
+;	.line	116; "blink.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	125; "blink.c"	RCLK_595 = 0;
+;	.line	117; "blink.c"	RCLK = 0;
 	BANKSEL	_GPIObits
 	BCF	_GPIObits,1
-;	.line	126; "blink.c"	}
+;	.line	118; "blink.c"	}
 	RETURN	
-; exit point of _rclock
+; exit point of _latch_clock
 
 ;***
 ;  pBlock Stats: dbName = C
@@ -515,54 +498,54 @@ _rclock:
 ;1 compiler assigned register :
 ;   STK00
 ;; Starting pCode block
-S_blink__sclock	code
-_sclock:
+S_blink__main_clock	code
+_main_clock:
 ; 2 exit points
-;	.line	116; "blink.c"	SCLK_595 = 1;
+;	.line	108; "blink.c"	SCLK = 1;
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,2
-;	.line	117; "blink.c"	delay(10);
+;	.line	109; "blink.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	118; "blink.c"	SCLK_595 = 0;
+;	.line	110; "blink.c"	SCLK = 0;
 	BANKSEL	_GPIObits
 	BCF	_GPIObits,2
-;	.line	119; "blink.c"	delay(10);
+;	.line	111; "blink.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	120; "blink.c"	}
+;	.line	112; "blink.c"	}
 	RETURN	
-; exit point of _sclock
+; exit point of _main_clock
 
 ;***
 ;  pBlock Stats: dbName = C
 ;***
 ;has an exit
 ;; Starting pCode block
-S_blink__setup	code
-_setup:
+S_blink__setup_mic	code
+_setup_mic:
 ; 2 exit points
-;	.line	109; "blink.c"	TRISIO = 0b00001000;       // GP4 and GP3 input, rest all output 011000
+;	.line	101; "blink.c"	TRISIO = 0b00001000;       // GP3 input, rest all output
 	MOVLW	0x08
 	BANKSEL	_TRISIO
 	MOVWF	_TRISIO
-;	.line	110; "blink.c"	GPIO=0x00;           // set all pins low
+;	.line	102; "blink.c"	GPIO=0x00;           // set all pins low
 	BANKSEL	_GPIO
 	CLRF	_GPIO
-;	.line	111; "blink.c"	ANSEL = 0; // Pines digital   
+;	.line	103; "blink.c"	ANSEL = 0; // Pins to digital  
 	BANKSEL	_ANSEL
 	CLRF	_ANSEL
-;	.line	112; "blink.c"	}
+;	.line	104; "blink.c"	}
 	RETURN	
-; exit point of _setup
+; exit point of _setup_mic
 
 ;***
 ;  pBlock Stats: dbName = C
@@ -582,11 +565,11 @@ _setup:
 S_blink__delay	code
 _delay:
 ; 2 exit points
-;	.line	95; "blink.c"	void delay(unsigned int tiempo)
+;	.line	87; "blink.c"	void delay(unsigned int tiempo)
 	MOVWF	r0x100A
 	MOVF	STK00,W
 	MOVWF	r0x100B
-;	.line	100; "blink.c"	for(i=0;i<tiempo;i++)
+;	.line	92; "blink.c"	for(i=0;i<tiempo;i++)
 	CLRF	r0x100C
 	CLRF	r0x100D
 _00139_DS_:
@@ -599,8 +582,8 @@ _00139_DS_:
 _00160_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00141_DS_
-;;genSkipc:3307: created from rifx:0x7ffeb4533ab0
-;	.line	101; "blink.c"	for(j=0;j<1275;j++);
+;;genSkipc:3307: created from rifx:0x7ffeabd0c3b0
+;	.line	93; "blink.c"	for(j=0;j<1275;j++);
 	MOVLW	0xfb
 	MOVWF	r0x100E
 	MOVLW	0x04
@@ -623,18 +606,18 @@ _00137_DS_:
 	IORWF	r0x1010,W
 	BTFSS	STATUS,2
 	GOTO	_00137_DS_
-;	.line	100; "blink.c"	for(i=0;i<tiempo;i++)
+;	.line	92; "blink.c"	for(i=0;i<tiempo;i++)
 	INCF	r0x100C,F
 	BTFSC	STATUS,2
 	INCF	r0x100D,F
 	GOTO	_00139_DS_
 _00141_DS_:
-;	.line	102; "blink.c"	}
+;	.line	94; "blink.c"	}
 	RETURN	
 ; exit point of _delay
 
 
 ;	code size estimation:
-;	  254+   46 =   300 instructions (  692 byte)
+;	  246+   44 =   290 instructions (  668 byte)
 
 	end
