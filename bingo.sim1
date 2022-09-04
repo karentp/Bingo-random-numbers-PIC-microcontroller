@@ -30,37 +30,37 @@
 
 <item itemtype="Probe" CircId="Probe-435" mainComp="false" Show_id="false" Show_Val="true" Pos="-64,-224" rotation="-45" hflip="1" vflip="1" label="Probe-435" idLabPos="16,-16" labelrot="45" valLabPos="16,0" valLabRot="45" ShowVolt="true" Threshold="2.5 V" />
 
-<item itemtype="Resistor" CircId="Resistor-443" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,48" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="15,0" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-443" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,48" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="15,0" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Seven Segment" CircId="Seven Segment-457" mainComp="false" Show_id="false" Show_Val="false" Pos="-196,-32" rotation="0" hflip="1" vflip="1" label="Seven Segment-26" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" NumDisplays="1 7seg" Color="Yellow" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="0.1 A" Resistance="0.5 Ω" />
+<item itemtype="Seven Segment" CircId="Seven Segment-457" mainComp="false" Show_id="false" Show_Val="false" Pos="-196,-32" rotation="0" hflip="1" vflip="1" label="Seven Segment-26" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" NumDisplays="1 7seg" Color="Yellow" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="0.024 A" Resistance="0.5 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-458" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,32" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="13,1" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-458" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,32" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="13,1" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-459" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,16" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-459" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,16" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-460" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,0" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-460" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,0" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-461" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,-16" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,5" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-461" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,-16" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,5" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-462" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,-28" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-462" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,-28" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-463" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,60" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-463" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-276,60" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="14,2" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-506" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-168" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="18,-7" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-506" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-168" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="18,-7" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-508" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-144" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="19,-6" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-508" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-144" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="19,-6" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-509" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-88" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="24,-1" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-509" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-88" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="24,-1" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Seven Segment" CircId="Seven Segment-510" mainComp="false" Show_id="false" Show_Val="false" Pos="-140,-32" rotation="0" hflip="1" vflip="1" label="Seven Segment-26" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" NumDisplays="1 7seg" Color="Yellow" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="0.1 A" Resistance="0.5 Ω" />
+<item itemtype="Seven Segment" CircId="Seven Segment-510" mainComp="false" Show_id="false" Show_Val="false" Pos="-140,-32" rotation="0" hflip="1" vflip="1" label="Seven Segment-26" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" NumDisplays="1 7seg" Color="Yellow" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="0.03 A" Resistance="0.5 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-511" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-128" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="19,-7" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-511" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-128" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="19,-7" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-512" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-112" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="22,-7" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-512" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-112" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="22,-7" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-513" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-100" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="24,-7" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-513" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-100" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="24,-7" valLabRot="0" Resistance="100 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-514" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-156" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="22,-8" valLabRot="0" Resistance="27 Ω" />
+<item itemtype="Resistor" CircId="Resistor-514" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-188,-156" rotation="0" hflip="1" vflip="1" label="Resistor-443" idLabPos="-16,-24" labelrot="0" valLabPos="22,-8" valLabRot="0" Resistance="100 Ω" />
 
 <item itemtype="Node" CircId="Node-236" mainComp="false" Pos="-376,-32" />
 
@@ -132,8 +132,6 @@
 
 <item itemtype="Connector" uid="connector-543" startpinid="74HC595-178-Q1" endpinid="Resistor-462-lPin" pointList="-316,-16,-300,-16,-300,-28,-292,-28" />
 
-<item itemtype="Connector" uid="connector-544" startpinid="Seven Segment-457-pin_a" endpinid="Resistor-463-rPin" pointList="-220,-56,-252,-56,-252,60,-260,60" />
-
 <item itemtype="Connector" uid="connector-545" startpinid="Seven Segment-457-pin_b" endpinid="Resistor-443-rPin" pointList="-220,-48,-244,-48,-244,48,-260,48" />
 
 <item itemtype="Connector" uid="connector-546" startpinid="Seven Segment-457-pin_c" endpinid="Resistor-458-rPin" pointList="-220,-40,-240,-40,-240,32,-260,32" />
@@ -179,5 +177,7 @@
 <item itemtype="Connector" uid="Connector-566" startpinid="Seven Segment-510-pin_commona" endpinid="Node-567-1" pointList="-132,0,-132,44,-188,44" />
 
 <item itemtype="Connector" uid="Connector-568" startpinid="Node-567-2" endpinid="Switch-47-switch0pinN" pointList="-188,44,-188,100" />
+
+<item itemtype="Connector" uid="connector-544" startpinid="Seven Segment-457-pin_a" endpinid="Resistor-463-rPin" pointList="-220,-56,-252,-56,-252,60,-260,60" />
 
 </circuit>
