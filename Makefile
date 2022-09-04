@@ -3,10 +3,10 @@ MCU=-p12f675
 CC=sdcc
 LD=sdcc
 CFLAGS=-I. -I/usr/local/share/sdcc/non-free/include
-TARGET=blink
+TARGET=bingo
 LDFLAGS = -I/usr/local/lib
 
-SRCS = blink.c 
+SRCS = bingo.c 
 
 all:
 	${CC} --use-non-free ${FAMILY} ${MCU} ${CFLAGS} -o ${TARGET} ${SRCS}

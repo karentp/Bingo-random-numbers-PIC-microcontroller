@@ -8,7 +8,7 @@
 #pragma config MCLRE = OFF      // MCLR GP03
 
 /*Define clock freq*/
-//#define FREQ 4000000  // 4MHZ 
+#define FREQ 4000000  // 4MHZ 
 
 /*Define the GPOs name*/
 #define DATA_GP0 GP0 // data for led 1
@@ -41,7 +41,7 @@ void main(void)
     unsigned int random_2 = 7;
     unsigned int contador = 0;
     while(1){
-        while (contador < 5){
+        while (contador < 16){
             if (random_1<9) {random_1 = random_1 + 1;}
             else random_1 = 0;
             if (random_2<9) {random_2 = random_2 + 1;}
@@ -54,6 +54,7 @@ void main(void)
         }
         delay(50);
         GPIO=0x00;
+        //Show 99 when finishing the program
         DisplayData(0xD,0xD);
         DisplayData(9,9);
         DisplayData(0xD,0xD);

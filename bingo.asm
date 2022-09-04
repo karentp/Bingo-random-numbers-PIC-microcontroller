@@ -4,7 +4,7 @@
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
-;	.file	"blink.c"
+;	.file	"bingo.c"
 	list	p=12f675
 	radix dec
 	include "p12f675.inc"
@@ -71,7 +71,7 @@ STK00	res 1
 ;--------------------------------------------------------
 ; compiler-defined variables
 ;--------------------------------------------------------
-UDL_blink_0	udata
+UDL_bingo_0	udata
 r0x101B	res	1
 r0x101C	res	1
 r0x101D	res	1
@@ -100,7 +100,7 @@ r0x101A	res	1
 ; initialized data
 ;--------------------------------------------------------
 
-IDD_blink_0	idata
+IDD_bingo_0	idata
 _data
 	db	0x3f	; 63
 	db	0x06	; 6
@@ -130,7 +130,7 @@ STARTUP	code 0x0000
 ;--------------------------------------------------------
 ; code
 ;--------------------------------------------------------
-code_blink	code
+code_bingo	code
 ;***
 ;  pBlock Stats: dbName = M
 ;***
@@ -168,38 +168,38 @@ code_blink	code
 ;   STK01
 ;   STK00
 ;; Starting pCode block
-S_blink__main	code
+S_bingo__main	code
 _main:
 ; 2 exit points
-;	.line	38; "blink.c"	setup_mic();
+;	.line	38; "bingo.c"	setup_mic();
 	PAGESEL	_setup_mic
 	CALL	_setup_mic
 	PAGESEL	$
-;	.line	40; "blink.c"	unsigned int random_1 = 0;
+;	.line	40; "bingo.c"	unsigned int random_1 = 0;
 	CLRF	r0x101B
 	CLRF	r0x101C
-;	.line	41; "blink.c"	unsigned int random_2 = 7;
+;	.line	41; "bingo.c"	unsigned int random_2 = 7;
 	MOVLW	0x07
 	MOVWF	r0x101D
 	CLRF	r0x101E
-;	.line	42; "blink.c"	unsigned int contador = 0;
+;	.line	42; "bingo.c"	unsigned int contador = 0;
 	CLRF	r0x101F
 	CLRF	r0x1020
-;;unsigned compare: left < lit(0x5=5), size=2
+;;unsigned compare: left < lit(0x10=16), size=2
 _00113_DS_:
-;	.line	44; "blink.c"	while (contador < 5){
+;	.line	44; "bingo.c"	while (contador < 16){
 	MOVLW	0x00
 	SUBWF	r0x1020,W
 	BTFSS	STATUS,2
 	GOTO	_00141_DS_
-	MOVLW	0x05
+	MOVLW	0x10
 	SUBWF	r0x101F,W
 _00141_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00115_DS_
-;;genSkipc:3307: created from rifx:0x7ffce71a0f00
+;;genSkipc:3307: created from rifx:0x7ffde99cd7f0
 ;;unsigned compare: left < lit(0x9=9), size=2
-;	.line	45; "blink.c"	if (random_1<9) {random_1 = random_1 + 1;}
+;	.line	45; "bingo.c"	if (random_1<9) {random_1 = random_1 + 1;}
 	MOVLW	0x00
 	SUBWF	r0x101C,W
 	BTFSS	STATUS,2
@@ -209,18 +209,18 @@ _00141_DS_:
 _00142_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00106_DS_
-;;genSkipc:3307: created from rifx:0x7ffce71a0f00
+;;genSkipc:3307: created from rifx:0x7ffde99cd7f0
 	INCF	r0x101B,F
 	BTFSC	STATUS,2
 	INCF	r0x101C,F
 	GOTO	_00107_DS_
 _00106_DS_:
-;	.line	46; "blink.c"	else random_1 = 0;
+;	.line	46; "bingo.c"	else random_1 = 0;
 	CLRF	r0x101B
 	CLRF	r0x101C
 ;;unsigned compare: left < lit(0x9=9), size=2
 _00107_DS_:
-;	.line	47; "blink.c"	if (random_2<9) {random_2 = random_2 + 1;}
+;	.line	47; "bingo.c"	if (random_2<9) {random_2 = random_2 + 1;}
 	MOVLW	0x00
 	SUBWF	r0x101E,W
 	BTFSS	STATUS,2
@@ -230,17 +230,17 @@ _00107_DS_:
 _00143_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00109_DS_
-;;genSkipc:3307: created from rifx:0x7ffce71a0f00
+;;genSkipc:3307: created from rifx:0x7ffde99cd7f0
 	INCF	r0x101D,F
 	BTFSC	STATUS,2
 	INCF	r0x101E,F
 	GOTO	_00110_DS_
 _00109_DS_:
-;	.line	48; "blink.c"	else random_2 = 0;
+;	.line	48; "bingo.c"	else random_2 = 0;
 	CLRF	r0x101D
 	CLRF	r0x101E
 _00110_DS_:
-;	.line	49; "blink.c"	if(BOTON == 1)  {
+;	.line	49; "bingo.c"	if(BOTON == 1)  {
 	CLRF	r0x1021
 	BANKSEL	_GPIObits
 	BTFSC	_GPIObits,3
@@ -249,7 +249,7 @@ _00110_DS_:
 	XORLW	0x01
 	BTFSS	STATUS,2
 	GOTO	_00112_DS_
-;	.line	50; "blink.c"	DisplayData(random_1, random_2);
+;	.line	50; "bingo.c"	DisplayData(random_1, random_2);
 	MOVF	r0x101D,W
 	MOVWF	STK02
 	MOVF	r0x101E,W
@@ -260,27 +260,27 @@ _00110_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	51; "blink.c"	contador= contador + 1;  
+;	.line	51; "bingo.c"	contador= contador + 1;  
 	INCF	r0x101F,F
 	BTFSC	STATUS,2
 	INCF	r0x1020,F
 _00112_DS_:
-;	.line	53; "blink.c"	BOTON = 0;
+;	.line	53; "bingo.c"	BOTON = 0;
 	BANKSEL	_GPIObits
 	BCF	_GPIObits,3
 	GOTO	_00113_DS_
 _00115_DS_:
-;	.line	55; "blink.c"	delay(50);
+;	.line	55; "bingo.c"	delay(50);
 	MOVLW	0x32
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	56; "blink.c"	GPIO=0x00;
+;	.line	56; "bingo.c"	GPIO=0x00;
 	BANKSEL	_GPIO
 	CLRF	_GPIO
-;	.line	57; "blink.c"	DisplayData(0xD,0xD);
+;	.line	58; "bingo.c"	DisplayData(0xD,0xD);
 	MOVLW	0x0d
 	MOVWF	STK02
 	MOVLW	0x00
@@ -291,7 +291,7 @@ _00115_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	58; "blink.c"	DisplayData(9,9);
+;	.line	59; "bingo.c"	DisplayData(9,9);
 	MOVLW	0x09
 	MOVWF	STK02
 	MOVLW	0x00
@@ -302,7 +302,7 @@ _00115_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	59; "blink.c"	DisplayData(0xD,0xD);
+;	.line	60; "bingo.c"	DisplayData(0xD,0xD);
 	MOVLW	0x0d
 	MOVWF	STK02
 	MOVLW	0x00
@@ -313,7 +313,7 @@ _00115_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	60; "blink.c"	DisplayData(9,9);
+;	.line	61; "bingo.c"	DisplayData(9,9);
 	MOVLW	0x09
 	MOVWF	STK02
 	MOVLW	0x00
@@ -324,7 +324,7 @@ _00115_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	61; "blink.c"	DisplayData(0xD,0xD);
+;	.line	62; "bingo.c"	DisplayData(0xD,0xD);
 	MOVLW	0x0d
 	MOVWF	STK02
 	MOVLW	0x00
@@ -335,7 +335,7 @@ _00115_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	62; "blink.c"	DisplayData(9,9);
+;	.line	63; "bingo.c"	DisplayData(9,9);
 	MOVLW	0x09
 	MOVWF	STK02
 	MOVLW	0x00
@@ -346,7 +346,7 @@ _00115_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	63; "blink.c"	DisplayData(0xD,0xD);
+;	.line	64; "bingo.c"	DisplayData(0xD,0xD);
 	MOVLW	0x0d
 	MOVWF	STK02
 	MOVLW	0x00
@@ -357,11 +357,11 @@ _00115_DS_:
 	PAGESEL	_DisplayData
 	CALL	_DisplayData
 	PAGESEL	$
-;	.line	65; "blink.c"	contador=0;
+;	.line	66; "bingo.c"	contador=0;
 	CLRF	r0x101F
 	CLRF	r0x1020
 	GOTO	_00113_DS_
-;	.line	68; "blink.c"	}
+;	.line	69; "bingo.c"	}
 	RETURN	
 ; exit point of _main
 
@@ -388,10 +388,10 @@ _00115_DS_:
 ;   r0x1019
 ;   r0x101A
 ;; Starting pCode block
-S_blink__DisplayData	code
+S_bingo__DisplayData	code
 _DisplayData:
 ; 2 exit points
-;	.line	100; "blink.c"	void DisplayData(unsigned int data1,  unsigned int data2){
+;	.line	101; "bingo.c"	void DisplayData(unsigned int data1,  unsigned int data2){
 	MOVWF	r0x1012
 	MOVF	STK00,W
 	MOVWF	r0x1013
@@ -399,7 +399,7 @@ _DisplayData:
 	MOVWF	r0x1014
 	MOVF	STK02,W
 	MOVWF	r0x1015
-;	.line	101; "blink.c"	if (data1 == 0xD) {data1= 0x00; data2=0x00;}
+;	.line	102; "bingo.c"	if (data1 == 0xD) {data1= 0x00; data2=0x00;}
 	MOVF	r0x1013,W
 	XORLW	0x0d
 	BTFSS	STATUS,2
@@ -414,7 +414,7 @@ _DisplayData:
 	CLRF	r0x1017
 	GOTO	_00203_DS_
 _00193_DS_:
-;	.line	103; "blink.c"	data1 = data[data1];
+;	.line	104; "bingo.c"	data1 = data[data1];
 	MOVF	r0x1013,W
 	ADDLW	(_data + 0)
 	MOVWF	r0x1018
@@ -433,7 +433,7 @@ _00193_DS_:
 	MOVWF	r0x101A
 	MOVWF	r0x1013
 	CLRF	r0x1012
-;	.line	104; "blink.c"	data2 = data[data2];
+;	.line	105; "bingo.c"	data2 = data[data2];
 	MOVF	r0x1015,W
 	ADDLW	(_data + 0)
 	MOVWF	r0x101A
@@ -453,7 +453,7 @@ _00193_DS_:
 	MOVWF	r0x1016
 	CLRF	r0x1017
 _00203_DS_:
-;	.line	106; "blink.c"	for (int i=0 ; i<8 ; i++){
+;	.line	107; "bingo.c"	for (int i=0 ; i<8 ; i++){
 	CLRF	r0x1015
 	CLRF	r0x1014
 ;;signed compare: left < lit(0x8=8), size=2, mask=ffff
@@ -468,8 +468,8 @@ _00197_DS_:
 _00217_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00195_DS_
-;;genSkipc:3307: created from rifx:0x7ffce71a0f00
-;	.line	107; "blink.c"	DATA_GP0 = (data1 >> i) & 0x01; // bit shift and bit mask data.
+;;genSkipc:3307: created from rifx:0x7ffde99cd7f0
+;	.line	108; "bingo.c"	DATA_GP0 = (data1 >> i) & 0x01; // bit shift and bit mask data.
 	MOVF	r0x1012,W
 	MOVWF	r0x1019
 	MOVF	r0x1013,W
@@ -509,7 +509,7 @@ _00001_DS_:
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,0
 _00002_DS_:
-;	.line	108; "blink.c"	DATA_GP4 = (data2 >> i) & 0x01; // bit shift and bit mask data.
+;	.line	109; "bingo.c"	DATA_GP4 = (data2 >> i) & 0x01; // bit shift and bit mask data.
 	MOVF	r0x1017,W
 	MOVWF	r0x1019
 	MOVF	r0x1016,W
@@ -549,21 +549,21 @@ _00003_DS_:
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,4
 _00004_DS_:
-;	.line	109; "blink.c"	main_clock(); //enable data storage clock
+;	.line	110; "bingo.c"	main_clock(); //enable data storage clock
 	PAGESEL	_main_clock
 	CALL	_main_clock
 	PAGESEL	$
-;	.line	106; "blink.c"	for (int i=0 ; i<8 ; i++){
+;	.line	107; "bingo.c"	for (int i=0 ; i<8 ; i++){
 	INCF	r0x1015,F
 	BTFSC	STATUS,2
 	INCF	r0x1014,F
 	GOTO	_00197_DS_
 _00195_DS_:
-;	.line	111; "blink.c"	latch_clock(); // Data latch
+;	.line	112; "bingo.c"	latch_clock(); // Data latch
 	PAGESEL	_latch_clock
 	CALL	_latch_clock
 	PAGESEL	$
-;	.line	112; "blink.c"	}
+;	.line	113; "bingo.c"	}
 	RETURN	
 ; exit point of _DisplayData
 
@@ -577,23 +577,23 @@ _00195_DS_:
 ;1 compiler assigned register :
 ;   STK00
 ;; Starting pCode block
-S_blink__latch_clock	code
+S_bingo__latch_clock	code
 _latch_clock:
 ; 2 exit points
-;	.line	95; "blink.c"	RCLK = 1;
+;	.line	96; "bingo.c"	RCLK = 1;
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,1
-;	.line	96; "blink.c"	delay(10);
+;	.line	97; "bingo.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	97; "blink.c"	RCLK = 0;
+;	.line	98; "bingo.c"	RCLK = 0;
 	BANKSEL	_GPIObits
 	BCF	_GPIObits,1
-;	.line	98; "blink.c"	}
+;	.line	99; "bingo.c"	}
 	RETURN	
 ; exit point of _latch_clock
 
@@ -609,30 +609,30 @@ _latch_clock:
 ;1 compiler assigned register :
 ;   STK00
 ;; Starting pCode block
-S_blink__main_clock	code
+S_bingo__main_clock	code
 _main_clock:
 ; 2 exit points
-;	.line	88; "blink.c"	SCLK = 1;
+;	.line	89; "bingo.c"	SCLK = 1;
 	BANKSEL	_GPIObits
 	BSF	_GPIObits,2
-;	.line	89; "blink.c"	delay(10);
+;	.line	90; "bingo.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	90; "blink.c"	SCLK = 0;
+;	.line	91; "bingo.c"	SCLK = 0;
 	BANKSEL	_GPIObits
 	BCF	_GPIObits,2
-;	.line	91; "blink.c"	delay(10);
+;	.line	92; "bingo.c"	delay(10);
 	MOVLW	0x0a
 	MOVWF	STK00
 	MOVLW	0x00
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	92; "blink.c"	}
+;	.line	93; "bingo.c"	}
 	RETURN	
 ; exit point of _main_clock
 
@@ -641,20 +641,20 @@ _main_clock:
 ;***
 ;has an exit
 ;; Starting pCode block
-S_blink__setup_mic	code
+S_bingo__setup_mic	code
 _setup_mic:
 ; 2 exit points
-;	.line	81; "blink.c"	TRISIO = 0b00001000;       // GP3 input, rest all output
+;	.line	82; "bingo.c"	TRISIO = 0b00001000;       // GP3 input, rest all output
 	MOVLW	0x08
 	BANKSEL	_TRISIO
 	MOVWF	_TRISIO
-;	.line	82; "blink.c"	GPIO=0x00;           // set all pins low
+;	.line	83; "bingo.c"	GPIO=0x00;           // set all pins low
 	BANKSEL	_GPIO
 	CLRF	_GPIO
-;	.line	83; "blink.c"	ANSEL = 0; // Pins to digital  
+;	.line	84; "bingo.c"	ANSEL = 0; // Pins to digital  
 	BANKSEL	_ANSEL
 	CLRF	_ANSEL
-;	.line	84; "blink.c"	}
+;	.line	85; "bingo.c"	}
 	RETURN	
 ; exit point of _setup_mic
 
@@ -673,14 +673,14 @@ _setup_mic:
 ;   r0x1010
 ;   r0x1011
 ;; Starting pCode block
-S_blink__delay	code
+S_bingo__delay	code
 _delay:
 ; 2 exit points
-;	.line	70; "blink.c"	void delay(unsigned int tiempo)
+;	.line	71; "bingo.c"	void delay(unsigned int tiempo)
 	MOVWF	r0x100A
 	MOVF	STK00,W
 	MOVWF	r0x100B
-;	.line	75; "blink.c"	for(i=0;i<tiempo;i++)
+;	.line	76; "bingo.c"	for(i=0;i<tiempo;i++)
 	CLRF	r0x100C
 	CLRF	r0x100D
 _00154_DS_:
@@ -693,8 +693,8 @@ _00154_DS_:
 _00175_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00156_DS_
-;;genSkipc:3307: created from rifx:0x7ffce71a0f00
-;	.line	76; "blink.c"	for(j=0;j<1275;j++);
+;;genSkipc:3307: created from rifx:0x7ffde99cd7f0
+;	.line	77; "bingo.c"	for(j=0;j<1275;j++);
 	MOVLW	0xfb
 	MOVWF	r0x100E
 	MOVLW	0x04
@@ -717,13 +717,13 @@ _00152_DS_:
 	IORWF	r0x1010,W
 	BTFSS	STATUS,2
 	GOTO	_00152_DS_
-;	.line	75; "blink.c"	for(i=0;i<tiempo;i++)
+;	.line	76; "bingo.c"	for(i=0;i<tiempo;i++)
 	INCF	r0x100C,F
 	BTFSC	STATUS,2
 	INCF	r0x100D,F
 	GOTO	_00154_DS_
 _00156_DS_:
-;	.line	77; "blink.c"	}
+;	.line	78; "bingo.c"	}
 	RETURN	
 ; exit point of _delay
 
